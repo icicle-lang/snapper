@@ -11,6 +11,7 @@ build-type:            Custom
 description:           ambiata-snapper
 
 extra-source-files:
+                       cbits/snappy-c-raw.cc
                        cbits/snappy-c.cc
                        cbits/snappy-sinksource.cc
                        cbits/snappy-stubs-internal.cc
@@ -26,6 +27,7 @@ library
                        base                            >= 3          && < 5
                      , ambiata-p
                      , ambiata-x-eithert
+                     , bytestring                      == 0.10.*
                      , transformers                    >= 0.4        && < 0.6
 
   ghc-options:
@@ -42,6 +44,7 @@ library
                        include
 
   c-sources:
+                       cbits/snappy-c-raw.cc
                        cbits/snappy-c.cc
                        cbits/snappy-sinksource.cc
                        cbits/snappy-stubs-internal.cc

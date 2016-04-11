@@ -20,5 +20,5 @@ functions over a strict `ByteString`.
 ```hs
 compress :: Strict.ByteString -> Strict.ByteString
 
-decompress :: Strict.ByteString -> Strict.ByteString
+decompress :: Strict.ByteString -> Maybe Strict.ByteString
 ```
