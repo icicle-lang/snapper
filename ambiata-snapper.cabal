@@ -10,6 +10,17 @@ cabal-version:         >= 1.8
 build-type:            Custom
 description:           ambiata-snapper
 
+extra-source-files:
+                       cbits/snappy-c.cc
+                       cbits/snappy-sinksource.cc
+                       cbits/snappy-stubs-internal.cc
+                       cbits/snappy.cc
+                       include/snappy-c.h
+                       include/snappy-internal.h
+                       include/snappy-sinksource.h
+                       include/snappy-stubs-internal.h
+                       include/snappy.h
+
 library
   build-depends:
                        base                            >= 3          && < 5
@@ -26,6 +37,18 @@ library
   exposed-modules:
                        Paths_ambiata_snapper
                        Snapper
+
+  include-dirs:
+                       include
+
+  c-sources:
+                       cbits/snappy-c.cc
+                       cbits/snappy-sinksource.cc
+                       cbits/snappy-stubs-internal.cc
+                       cbits/snappy.cc
+
+  cc-options:
+                       -O3 -msse4.2
 
 test-suite test
   type:                exitcode-stdio-1.0
