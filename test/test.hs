@@ -1,5 +1,9 @@
 import           Disorder.Core.Main
 
+import qualified Test.Snapper
+
 main :: IO ()
 main =
-  disorderMain []
+  disorderMain [
+      Test.Snapper.tests
+    ]
