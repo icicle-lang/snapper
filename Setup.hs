@@ -15,7 +15,7 @@ import           Distribution.Simple.Utils (createDirectoryIfMissingVerbose, rew
 
 main :: IO ()
 main =
-  let hooks = simpleUserHooks
+  let hooks = autoconfUserHooks
    in defaultMainWithHooks hooks {
      preConf = \args flags -> do
        createDirectoryIfMissingVerbose silent True "gen"
