@@ -56,6 +56,16 @@ foreign import ccall unsafe "snappy_raw_uncompress"
   snappy_raw_uncompress :: Ptr Word8 -> CSize -> Ptr Word8 -> IO CInt
 
 
+--
+-- Note that we use snappy_raw_compress and snappy_raw_uncompress instead of
+-- the standard Snappy C API because it avoids additional checks on the lengths
+-- of buffers which we do in the Haskell instead. The main issue with the extra
+-- checks is that we then have to deal with the C API signaling a failure which
+-- cannot happen, and this would mean both compress and decompress would have
+-- the unpleasant type: ByteString -> Either SnappyError ByteString.
+--
+
+
 -- | Compress a 'ByteString' using snappy.
 compress :: ByteString -> ByteString
 compress (PS sfp soff slen0) =
