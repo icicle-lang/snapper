@@ -14,7 +14,8 @@ import           Data.Word (Word8)
 
 import           Foreign.C.Types (CSize(..), CInt(..))
 import           Foreign.ForeignPtr (withForeignPtr)
-import           Foreign.Marshal (alloca, with)
+import           Foreign.Marshal (alloca)
+import qualified Foreign.Marshal as Foreign
 import           Foreign.Ptr (Ptr, plusPtr)
 import           Foreign.Storable (peek)
 
@@ -75,7 +76,7 @@ compress (PS sfp soff slen0) =
     dlen0 <- snappy_max_compressed_length slen
     createUptoN (fromIntegral dlen0) $ \dptr ->
       withForeignPtr sfp $ \sptr0 ->
-      with dlen0 $ \dlenptr -> do
+      Foreign.with dlen0 $ \dlenptr -> do
         snappy_raw_compress (sptr0 `plusPtr` soff) slen dptr dlenptr
         dlen <- peek dlenptr
         return $ fromIntegral dlen
