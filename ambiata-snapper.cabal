@@ -83,5 +83,5 @@ test-suite test
                      , ambiata-disorder-corpus
                      , ambiata-p
                      , ambiata-snapper
-                     , QuickCheck                      >= 2.8.2      && < 2.9
-                     , quickcheck-instances            == 0.3.*
+                     , QuickCheck
+                     , quickcheck-instances
