@@ -36,10 +36,9 @@ extra-source-files:
 library
   build-depends:
                        base                            >= 3          && < 5
-                     , ambiata-p
-                     , ambiata-x-eithert
                      , bytestring                      == 0.10.*
                      , transformers                    >= 0.4        && < 0.6
+                     , transformers-either
 
   ghc-options:
                        -Wall
@@ -48,8 +47,8 @@ library
                        src
 
   exposed-modules:
-                       Paths_ambiata_snapper
                        Snapper
+                       Snapper.Prelude
 
   include-dirs:
                        include
@@ -79,9 +78,11 @@ test-suite test
 
   build-depends:
                        base                            >= 3          && < 5
-                     , ambiata-disorder-core
-                     , ambiata-disorder-corpus
-                     , ambiata-p
                      , ambiata-snapper
-                     , QuickCheck
+                     , hedgehog
+                     , hedgehog-quickcheck
                      , quickcheck-instances
+
+
+  other-modules:
+                       Test.Snapper

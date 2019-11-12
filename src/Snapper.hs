@@ -19,9 +19,8 @@ import qualified Foreign.Marshal as Foreign
 import           Foreign.Ptr (Ptr, plusPtr)
 import           Foreign.Storable (peek)
 
-import           P
+import           Snapper.Prelude
 
-import           System.IO (IO)
 import           System.IO.Unsafe (unsafePerformIO)
 
 

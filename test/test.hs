@@ -1,9 +1,9 @@
-import           Disorder.Core.Main
+import           Hedgehog.Main
 
 import qualified Test.Snapper
 
 main :: IO ()
 main =
-  disorderMain [
+  defaultMain [
       Test.Snapper.tests
     ]

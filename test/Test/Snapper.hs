@@ -4,26 +4,34 @@
 {-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 module Test.Snapper where
 
-import           Disorder.Core.Tripping (tripping)
+import           Hedgehog
+import           Hedgehog.Gen.QuickCheck
 
 import           Snapper
+import           Snapper.Prelude
 
-import           P
-
-import           Test.QuickCheck (forAllProperties, quickCheckWithResult)
-import           Test.QuickCheck (stdArgs, maxSuccess)
 import           Test.QuickCheck.Instances ()
 
 
+prop_compression_tripping :: Property
 prop_compression_tripping =
-  tripping compress decompress
+  property $
+    forAll arbitrary >>=
+      tripping `flip` compress `flip` decompress
 
-prop_compress_differs bs =
-  compress bs /= bs
+prop_compress_differs :: Property
+prop_compress_differs =
+  property $
+    forAll arbitrary >>= \bs ->
+      compress bs /== bs
 
-prop_decompress_garbage bs =
-  decompress bs /= Just bs
+prop_decompress_garbage :: Property
+prop_decompress_garbage =
+  property $
+    forAll arbitrary >>= \bs ->
+      decompress bs /== Just bs
 
 return []
+tests :: IO Bool
 tests =
-  $forAllProperties $ quickCheckWithResult (stdArgs {maxSuccess = 10000})
+  checkParallel $$(discover)
