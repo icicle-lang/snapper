@@ -1,6 +1,7 @@
 name:                  ambiata-snapper
 version:               0.0.1
 license:               BSD3
+license-file:          LICENSE
 author:                Ambiata <info@ambiata.com>
 maintainer:            Ambiata <info@ambiata.com>
 copyright:             (c) 2015 Ambiata.
@@ -8,7 +9,7 @@ synopsis:              ambiata-snapper
 category:              System
 cabal-version:         >= 1.8
 build-type:            Configure
-description:           ambiata-snapper
+description:           Haskell library for compressing / decompressing snappy encoded data.
 
 tested-with:
   GHC==8.0.2,
@@ -40,6 +41,10 @@ extra-source-files:
                        cbits/snappy-stubs-internal.cc
                        cbits/snappy.cc
 
+source-repository head
+  type:     git
+  location: https://github.com/icicle-lang/snapper.git
+
 library
   build-depends:
                        base                            >= 3          && < 5
@@ -68,7 +73,7 @@ library
                        cbits/snappy.cc
 
   cc-options:
-                       -O3 -msse4.2
+                       -msse4.2
 
   extra-libraries:
                        stdc++
@@ -78,7 +83,7 @@ test-suite test
 
   main-is:             test.hs
 
-  ghc-options:         -Wall -threaded -O2
+  ghc-options:         -Wall -threaded
 
   hs-source-dirs:
                        test
