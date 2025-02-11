@@ -48,8 +48,8 @@ source-repository head
 library
   build-depends:
                        base                            >= 3          && < 5
-                     , bytestring                      == 0.10.*
-                     , transformers                    >= 0.4        && < 0.6
+                     , bytestring                      >= 0.10       && < 0.13
+                     , transformers                    >= 0.4        && < 0.7
                      , transformers-either
 
   ghc-options:
